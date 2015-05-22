@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  TTTGridView.h
 //  TicTacToe
 //
-//  Created by Yondon Fu on 5/20/15.
+//  Created by Yondon Fu on 5/21/15.
 //  Copyright (c) 2015 TicTacToe. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TTTGridView : UIView
 
 @end
-
