@@ -10,6 +10,20 @@
 
 @implementation TTTGridView
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+        tapRecognizer.numberOfTapsRequired = 1;
+        
+        [self addGestureRecognizer:tapRecognizer];
+    }
+    
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     int xStart = 0;
@@ -35,6 +49,18 @@
     [[UIColor grayColor] setStroke];
     
     [path stroke];
+}
+
+- (void)singleTap:(UIGestureRecognizer *)gestureRecognizer
+{
+    NSLog(@"Single Tap");
+    CGPoint tapLoc = [gestureRecognizer locationInView:self];
+    
+    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(tapLoc.x, tapLoc.y, 60, 60)];
+    circleView.alpha = 0.5;
+    circleView.layer.cornerRadius = 30;
+    circleView.backgroundColor = [UIColor blueColor];
+    [self addSubview:circleView];
 }
 
 @end
