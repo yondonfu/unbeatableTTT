@@ -7,6 +7,8 @@
 //
 
 #import "TTTGridView.h"
+#import "TTTCircleView.h"
+#import "TTTXView.h"
 
 @implementation TTTGridView
 
@@ -28,22 +30,21 @@
 {
     int xStart = 0;
     int yStart = 0;
-    int gridSize = 300;
     
     UIBezierPath *path = [[UIBezierPath alloc] init];
     
     // Vertical lines
     for (int x = 1; x <= 2; x++) {
-        int xPos = xStart + x * gridSize / 3;
+        int xPos = xStart + x * kCellSize;
         [path moveToPoint:CGPointMake(xPos, yStart)];
-        [path addLineToPoint:CGPointMake(xPos, yStart + gridSize)];
+        [path addLineToPoint:CGPointMake(xPos, yStart + kGridSize)];
     }
     
     // Horizontal lines
     for (int y = 1; y <= 2; y++) {
-        int yPos = yStart + y * gridSize / 3;
+        int yPos = yStart + y * kCellSize;
         [path moveToPoint:CGPointMake(xStart, yPos)];
-        [path addLineToPoint:CGPointMake(xStart + gridSize, yPos)];
+        [path addLineToPoint:CGPointMake(xStart + kGridSize, yPos)];
     }
     
     [[UIColor grayColor] setStroke];
@@ -53,14 +54,64 @@
 
 - (void)singleTap:(UIGestureRecognizer *)gestureRecognizer
 {
-    NSLog(@"Single Tap");
     CGPoint tapLoc = [gestureRecognizer locationInView:self];
     
-    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(tapLoc.x, tapLoc.y, 60, 60)];
-    circleView.alpha = 0.5;
-    circleView.layer.cornerRadius = 30;
-    circleView.backgroundColor = [UIColor blueColor];
+    TTTCircleView *circleView = [[TTTCircleView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    
+    if (tapLoc.x > 0 && tapLoc.x < kCellSize) {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top left");
+            
+            circleView.center = CGPointMake(kCellSize / 2, kCellSize / 2);
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle left");
+            
+            circleView.center = CGPointMake(kCellSize / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+        } else {
+            NSLog(@"Bottom left");
+            
+            circleView.center = CGPointMake(kCellSize / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+        }
+    } else if (tapLoc.x > kCellSize && tapLoc.x < 2 * kCellSize) {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top middle");
+            
+            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, kCellSize / 2);
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle middle");
+            
+            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+        } else {
+            NSLog(@"Bottom middle");
+            
+            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+        }
+    } else {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top right");
+            
+            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, kCellSize / 2);
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle right");
+            
+            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+        } else {
+            NSLog(@"Bottom right");
+            
+            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+        }
+    }
+    
     [self addSubview:circleView];
+    
 }
 
 @end

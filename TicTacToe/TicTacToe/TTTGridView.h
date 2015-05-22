@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kGridSize 300
+#define kCellSize 100
+
 @interface TTTGridView : UIView
 
 @end

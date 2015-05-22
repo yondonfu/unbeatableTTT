@@ -13,6 +13,8 @@
 		77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77790C601B0CFF8A00E77D6E /* AppDelegate.m */; };
 		77790C691B0CFF8A00E77D6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77790C681B0CFF8A00E77D6E /* Images.xcassets */; };
 		77790C6C1B0CFF8A00E77D6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77790C6A1B0CFF8A00E77D6E /* LaunchScreen.xib */; };
+		7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9101B0FCB8400F36A4A /* TTTCircleView.m */; };
+		7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9131B0FD0D100F36A4A /* TTTXView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,10 @@
 		77790C601B0CFF8A00E77D6E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		77790C681B0CFF8A00E77D6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		77790C6B1B0CFF8A00E77D6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		7798A90F1B0FCB8400F36A4A /* TTTCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTCircleView.h; sourceTree = "<group>"; };
+		7798A9101B0FCB8400F36A4A /* TTTCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTCircleView.m; sourceTree = "<group>"; };
+		7798A9121B0FD0D100F36A4A /* TTTXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTXView.h; sourceTree = "<group>"; };
+		7798A9131B0FD0D100F36A4A /* TTTXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTXView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,10 @@
 			children = (
 				7744F1221B0EC71900E0AE4F /* TTTGridView.h */,
 				7744F1231B0EC71900E0AE4F /* TTTGridView.m */,
+				7798A90F1B0FCB8400F36A4A /* TTTCircleView.h */,
+				7798A9101B0FCB8400F36A4A /* TTTCircleView.m */,
+				7798A9121B0FD0D100F36A4A /* TTTXView.h */,
+				7798A9131B0FD0D100F36A4A /* TTTXView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -176,8 +186,10 @@
 			files = (
 				7744F1211B0EB80100E0AE4F /* TTTGameViewController.m in Sources */,
 				7744F1241B0EC71900E0AE4F /* TTTGridView.m in Sources */,
+				7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */,
 				77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */,
 				77790C5E1B0CFF8A00E77D6E /* main.m in Sources */,
+				7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
