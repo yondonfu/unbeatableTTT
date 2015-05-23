@@ -17,6 +17,9 @@
 		7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9131B0FD0D100F36A4A /* TTTXView.m */; };
 		7798A9171B0FD30D00F36A4A /* TTTGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9161B0FD30D00F36A4A /* TTTGame.m */; };
 		7798A91A1B0FD31800F36A4A /* TTTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9191B0FD31800F36A4A /* TTTPlayer.m */; };
+		7798A91D1B10CF0F00F36A4A /* TTTGameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */; };
+		7798A9211B10D52900F36A4A /* TTTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9201B10D52900F36A4A /* TTTConstants.m */; };
+		7798A9241B10D80C00F36A4A /* TTTGamePlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9231B10D80C00F36A4A /* TTTGamePlayController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,12 @@
 		7798A9161B0FD30D00F36A4A /* TTTGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGame.m; sourceTree = "<group>"; };
 		7798A9181B0FD31800F36A4A /* TTTPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTPlayer.h; sourceTree = "<group>"; };
 		7798A9191B0FD31800F36A4A /* TTTPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayer.m; sourceTree = "<group>"; };
+		7798A91B1B10CF0F00F36A4A /* TTTGameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGameBoard.h; sourceTree = "<group>"; };
+		7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameBoard.m; sourceTree = "<group>"; };
+		7798A91F1B10D52900F36A4A /* TTTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTConstants.h; sourceTree = "<group>"; };
+		7798A9201B10D52900F36A4A /* TTTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTConstants.m; sourceTree = "<group>"; };
+		7798A9221B10D80C00F36A4A /* TTTGamePlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGamePlayController.h; sourceTree = "<group>"; };
+		7798A9231B10D80C00F36A4A /* TTTGamePlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGamePlayController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +80,7 @@
 		77790C5A1B0CFF8900E77D6E /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				7798A91E1B10D4FB00F36A4A /* Util */,
 				77790C831B0D015900E77D6E /* Controller */,
 				77790C821B0D013300E77D6E /* View */,
 				77790C811B0D012B00E77D6E /* Model */,
@@ -99,6 +109,8 @@
 				7798A9161B0FD30D00F36A4A /* TTTGame.m */,
 				7798A9181B0FD31800F36A4A /* TTTPlayer.h */,
 				7798A9191B0FD31800F36A4A /* TTTPlayer.m */,
+				7798A91B1B10CF0F00F36A4A /* TTTGameBoard.h */,
+				7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -121,8 +133,19 @@
 			children = (
 				7744F11F1B0EB80100E0AE4F /* TTTGameViewController.h */,
 				7744F1201B0EB80100E0AE4F /* TTTGameViewController.m */,
+				7798A9221B10D80C00F36A4A /* TTTGamePlayController.h */,
+				7798A9231B10D80C00F36A4A /* TTTGamePlayController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		7798A91E1B10D4FB00F36A4A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7798A91F1B10D52900F36A4A /* TTTConstants.h */,
+				7798A9201B10D52900F36A4A /* TTTConstants.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +220,11 @@
 				7744F1211B0EB80100E0AE4F /* TTTGameViewController.m in Sources */,
 				7744F1241B0EC71900E0AE4F /* TTTGridView.m in Sources */,
 				7798A9171B0FD30D00F36A4A /* TTTGame.m in Sources */,
+				7798A91D1B10CF0F00F36A4A /* TTTGameBoard.m in Sources */,
 				7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */,
 				77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */,
+				7798A9241B10D80C00F36A4A /* TTTGamePlayController.m in Sources */,
+				7798A9211B10D52900F36A4A /* TTTConstants.m in Sources */,
 				77790C5E1B0CFF8A00E77D6E /* main.m in Sources */,
 				7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */,
 				7798A91A1B0FD31800F36A4A /* TTTPlayer.m in Sources */,
