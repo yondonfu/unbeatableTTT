@@ -18,6 +18,31 @@
 
 @implementation TTTGamePlayController
 
++ (instancetype)sharedInstance
+{
+    static TTTGamePlayController *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[TTTGamePlayController alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
+- (void)startGame
+{
+    self.gameBoard = [[TTTGameBoard alloc] init];
+    NSLog(@"%@", self.gameBoard.gameMatrix);
+}
+
+- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index
+{
+    [self.gameBoard setPiece:type atIndex:index];
+    
+    NSLog(@"%@", self.gameBoard.gameMatrix);
+}
+
+
 - (BOOL)isFinished
 {
     for (int i = 0; i < TTTGameBoardSize; i++) {
@@ -153,12 +178,25 @@
     return TTTBoardPieceNone;
 }
 
-- (NSInteger)score
+- (NSArray *)getAvailableMoves
+{
+    NSMutableArray *moves = [NSMutableArray array];
+    
+    for (int i = 0; i < TTTGameBoardSize; i++) {
+        if ([self.gameBoard isSlotOpen:i]) {
+            [moves addObject:@(i)];
+        }
+    }
+    
+    return moves;
+}
+
+- (NSInteger)scoreAtDepth:(int)depth
 {
     if ([self hasWonPlayer:TTTBoardPieceX]) {
-        return 10;
+        return 10 - depth;
     } else if ([self hasWonPlayer:TTTBoardPieceO]) {
-        return -10;
+        return depth - 10;
     } else {
         return 0;
     }

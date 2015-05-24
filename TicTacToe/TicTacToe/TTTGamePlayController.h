@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTTConstants.h"
 
 @interface TTTGamePlayController : NSObject
+
++ (instancetype)sharedInstance;
+- (void)startGame;
+- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
+- (BOOL)isFinished;
+- (BOOL)hasWonPlayer:(TTTBoardPiece)type;
+- (NSArray *)getAvailableMoves;
+- (NSInteger)scoreAtDepth:(int)depth;
 
 @end

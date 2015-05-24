@@ -10,6 +10,7 @@
 #import "TTTGridView.h"
 #import "TTTCircleView.h"
 #import "TTTXView.h"
+#import "TTTGamePlayController.h"
 
 @interface TTTGameViewController ()
 
@@ -79,12 +80,24 @@
 {
     NSLog(@"Selected computer");
     self.computerLabel.textColor = [UIColor blueColor];
+    self.playerLabel.textColor = [UIColor blackColor];
+    
+    [[TTTGamePlayController sharedInstance] startGame];
+    
+    [self.gridView clearGrid];
+    [self.gridView allowTaps];
 }
 
 - (void)selectPlayer:(UITapGestureRecognizer *)recgonizer
 {
     NSLog(@"Selected player");
     self.playerLabel.textColor = [UIColor blueColor];
+    self.computerLabel.textColor = [UIColor blackColor];
+    
+    [[TTTGamePlayController sharedInstance] startGame];
+    
+    [self.gridView clearGrid];
+    [self.gridView allowTaps];
 }
 
 

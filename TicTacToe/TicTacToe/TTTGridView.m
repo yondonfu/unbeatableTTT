@@ -9,22 +9,9 @@
 #import "TTTGridView.h"
 #import "TTTCircleView.h"
 #import "TTTXView.h"
+#import "TTTGamePlayController.h"
 
 @implementation TTTGridView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    
-    if (self) {
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-        tapRecognizer.numberOfTapsRequired = 1;
-        
-        [self addGestureRecognizer:tapRecognizer];
-    }
-    
-    return self;
-}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -52,65 +39,101 @@
     [path stroke];
 }
 
+- (void)clearGrid
+{
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+- (void)allowTaps
+{
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    
+    [self addGestureRecognizer:tapRecognizer];
+}
+
 - (void)singleTap:(UIGestureRecognizer *)gestureRecognizer
 {
     CGPoint tapLoc = [gestureRecognizer locationInView:self];
     
-    TTTCircleView *circleView = [[TTTCircleView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    TTTXView *xView = [[TTTXView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
     
     if (tapLoc.x > 0 && tapLoc.x < kCellSize) {
         if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
             NSLog(@"Top left");
             
-            circleView.center = CGPointMake(kCellSize / 2, kCellSize / 2);
+            xView.center = CGPointMake(kCellSize / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:0];
             
         } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
             NSLog(@"Middle left");
             
-            circleView.center = CGPointMake(kCellSize / 2, (kCellSize + (2 * kCellSize)) / 2);
+            xView.center = CGPointMake(kCellSize / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:3];
             
         } else {
             NSLog(@"Bottom left");
             
-            circleView.center = CGPointMake(kCellSize / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            xView.center = CGPointMake(kCellSize / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:6];
         }
     } else if (tapLoc.x > kCellSize && tapLoc.x < 2 * kCellSize) {
         if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
             NSLog(@"Top middle");
             
-            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, kCellSize / 2);
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:1];
             
         } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
             NSLog(@"Middle middle");
             
-            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:4];
             
         } else {
             NSLog(@"Bottom middle");
             
-            circleView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:7];
             
         }
     } else {
         if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
             NSLog(@"Top right");
             
-            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, kCellSize / 2);
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:2];
             
         } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
             NSLog(@"Middle right");
             
-            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:5];
             
         } else {
             NSLog(@"Bottom right");
             
-            circleView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:8];
             
         }
     }
     
-    [self addSubview:circleView];
+    [self addSubview:xView];
+    
+    if ([[TTTGamePlayController sharedInstance] isFinished]) {
+        NSLog(@"Board filled, removing gesture recognizer");
+        [self removeGestureRecognizer:gestureRecognizer];
+    }
     
 }
 

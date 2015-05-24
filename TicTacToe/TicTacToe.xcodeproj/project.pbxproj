@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7744F1211B0EB80100E0AE4F /* TTTGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744F1201B0EB80100E0AE4F /* TTTGameViewController.m */; };
 		7744F1241B0EC71900E0AE4F /* TTTGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744F1231B0EC71900E0AE4F /* TTTGridView.m */; };
+		7757341F1B1242F700A1738E /* TTTPerfectPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7757341E1B1242F700A1738E /* TTTPerfectPlayer.m */; };
+		775734221B1252B300A1738E /* TTTGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 775734211B1252B300A1738E /* TTTGameState.m */; };
 		77790C5E1B0CFF8A00E77D6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77790C5D1B0CFF8A00E77D6E /* main.m */; };
 		77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77790C601B0CFF8A00E77D6E /* AppDelegate.m */; };
 		77790C691B0CFF8A00E77D6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77790C681B0CFF8A00E77D6E /* Images.xcassets */; };
@@ -25,6 +27,10 @@
 		7744F1201B0EB80100E0AE4F /* TTTGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameViewController.m; sourceTree = "<group>"; };
 		7744F1221B0EC71900E0AE4F /* TTTGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGridView.h; sourceTree = "<group>"; };
 		7744F1231B0EC71900E0AE4F /* TTTGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGridView.m; sourceTree = "<group>"; };
+		7757341D1B1242F700A1738E /* TTTPerfectPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTPerfectPlayer.h; sourceTree = "<group>"; };
+		7757341E1B1242F700A1738E /* TTTPerfectPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPerfectPlayer.m; sourceTree = "<group>"; };
+		775734201B1252B300A1738E /* TTTGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGameState.h; sourceTree = "<group>"; };
+		775734211B1252B300A1738E /* TTTGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameState.m; sourceTree = "<group>"; };
 		77790C581B0CFF8900E77D6E /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77790C5C1B0CFF8A00E77D6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77790C5D1B0CFF8A00E77D6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +107,10 @@
 			children = (
 				7798A91B1B10CF0F00F36A4A /* TTTGameBoard.h */,
 				7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */,
+				7757341D1B1242F700A1738E /* TTTPerfectPlayer.h */,
+				7757341E1B1242F700A1738E /* TTTPerfectPlayer.m */,
+				775734201B1252B300A1738E /* TTTGameState.h */,
+				775734211B1252B300A1738E /* TTTGameState.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -215,6 +225,8 @@
 				77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */,
 				7798A9241B10D80C00F36A4A /* TTTGamePlayController.m in Sources */,
 				7798A9211B10D52900F36A4A /* TTTConstants.m in Sources */,
+				775734221B1252B300A1738E /* TTTGameState.m in Sources */,
+				7757341F1B1242F700A1738E /* TTTPerfectPlayer.m in Sources */,
 				77790C5E1B0CFF8A00E77D6E /* main.m in Sources */,
 				7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */,
 			);

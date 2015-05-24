@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTTConstants.h"
 
 @interface TTTGameBoard : NSObject
 
 @property (strong, nonatomic) NSMutableArray *gameMatrix;
+
+- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
+- (BOOL)isSlotOpen:(NSInteger)index;
 
 @end
