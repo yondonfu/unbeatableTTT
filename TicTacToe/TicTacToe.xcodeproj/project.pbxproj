@@ -15,8 +15,6 @@
 		77790C6C1B0CFF8A00E77D6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77790C6A1B0CFF8A00E77D6E /* LaunchScreen.xib */; };
 		7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9101B0FCB8400F36A4A /* TTTCircleView.m */; };
 		7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9131B0FD0D100F36A4A /* TTTXView.m */; };
-		7798A9171B0FD30D00F36A4A /* TTTGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9161B0FD30D00F36A4A /* TTTGame.m */; };
-		7798A91A1B0FD31800F36A4A /* TTTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9191B0FD31800F36A4A /* TTTPlayer.m */; };
 		7798A91D1B10CF0F00F36A4A /* TTTGameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */; };
 		7798A9211B10D52900F36A4A /* TTTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9201B10D52900F36A4A /* TTTConstants.m */; };
 		7798A9241B10D80C00F36A4A /* TTTGamePlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798A9231B10D80C00F36A4A /* TTTGamePlayController.m */; };
@@ -38,10 +36,6 @@
 		7798A9101B0FCB8400F36A4A /* TTTCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTCircleView.m; sourceTree = "<group>"; };
 		7798A9121B0FD0D100F36A4A /* TTTXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTXView.h; sourceTree = "<group>"; };
 		7798A9131B0FD0D100F36A4A /* TTTXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTXView.m; sourceTree = "<group>"; };
-		7798A9151B0FD30D00F36A4A /* TTTGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGame.h; sourceTree = "<group>"; };
-		7798A9161B0FD30D00F36A4A /* TTTGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGame.m; sourceTree = "<group>"; };
-		7798A9181B0FD31800F36A4A /* TTTPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTPlayer.h; sourceTree = "<group>"; };
-		7798A9191B0FD31800F36A4A /* TTTPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayer.m; sourceTree = "<group>"; };
 		7798A91B1B10CF0F00F36A4A /* TTTGameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGameBoard.h; sourceTree = "<group>"; };
 		7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameBoard.m; sourceTree = "<group>"; };
 		7798A91F1B10D52900F36A4A /* TTTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTConstants.h; sourceTree = "<group>"; };
@@ -105,10 +99,6 @@
 		77790C811B0D012B00E77D6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7798A9151B0FD30D00F36A4A /* TTTGame.h */,
-				7798A9161B0FD30D00F36A4A /* TTTGame.m */,
-				7798A9181B0FD31800F36A4A /* TTTPlayer.h */,
-				7798A9191B0FD31800F36A4A /* TTTPlayer.m */,
 				7798A91B1B10CF0F00F36A4A /* TTTGameBoard.h */,
 				7798A91C1B10CF0F00F36A4A /* TTTGameBoard.m */,
 			);
@@ -179,6 +169,7 @@
 				TargetAttributes = {
 					77790C571B0CFF8900E77D6E = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = R5ZA3YK9RT;
 					};
 				};
 			};
@@ -219,7 +210,6 @@
 			files = (
 				7744F1211B0EB80100E0AE4F /* TTTGameViewController.m in Sources */,
 				7744F1241B0EC71900E0AE4F /* TTTGridView.m in Sources */,
-				7798A9171B0FD30D00F36A4A /* TTTGame.m in Sources */,
 				7798A91D1B10CF0F00F36A4A /* TTTGameBoard.m in Sources */,
 				7798A9141B0FD0D100F36A4A /* TTTXView.m in Sources */,
 				77790C611B0CFF8A00E77D6E /* AppDelegate.m in Sources */,
@@ -227,7 +217,6 @@
 				7798A9211B10D52900F36A4A /* TTTConstants.m in Sources */,
 				77790C5E1B0CFF8A00E77D6E /* main.m in Sources */,
 				7798A9111B0FCB8400F36A4A /* TTTCircleView.m in Sources */,
-				7798A91A1B0FD31800F36A4A /* TTTPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,9 +318,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -339,9 +331,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
