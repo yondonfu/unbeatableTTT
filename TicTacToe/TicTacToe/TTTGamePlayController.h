@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "TTTConstants.h"
+#import "TTTGameState.h"
+#import "TTTPerfectPlayer.h"
 
 @interface TTTGamePlayController : NSObject
 
+@property (strong, nonatomic) TTTGameState *currGameState;
+@property (strong, nonatomic) TTTPerfectPlayer *perfectComputer;
+
 + (instancetype)sharedInstance;
-- (void)startGame;
+- (void)startGameWithPlayer:(BOOL)playerFirst;
 - (void)resetGame;
-- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
-- (BOOL)isFinished;
-- (BOOL)hasWonPlayer:(TTTBoardPiece)type;
-- (NSArray *)getAvailableMoves;
-- (NSInteger)scoreAtDepth:(int)depth;
 
 @end

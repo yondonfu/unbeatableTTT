@@ -31,6 +31,8 @@
 {
     if (index < 0 || index > TTTGameBoardSize) {
         NSLog(@"Index out of bounds for game board");
+    } else if (![self isSlotOpen:index]) {
+        NSLog(@"Slot on game board is already occupied");
     } else {
         self.gameMatrix[index] = @(type);
     }
@@ -56,6 +58,21 @@
     }
     
     self.gameMatrix = slots;
+}
+
+- (TTTGameBoard *)copyBoard
+{
+    TTTGameBoard *newBoard = [[TTTGameBoard alloc] init];
+    
+    NSMutableArray *slots = [NSMutableArray array];
+    
+    for (int i = 0; i < TTTGameBoardSize; i++) {
+        [slots addObject:[self.gameMatrix objectAtIndex:i]];
+    }
+    
+    newBoard.gameMatrix = slots;
+    
+    return newBoard;
 }
 
 @end

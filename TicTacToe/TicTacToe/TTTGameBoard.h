@@ -13,8 +13,10 @@
 
 @property (strong, nonatomic) NSMutableArray *gameMatrix;
 
-- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
 - (BOOL)isSlotOpen:(NSInteger)index;
+- (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
+- (TTTBoardPiece)pieceAtIndex:(NSInteger)index;
 - (void)resetBoard;
+- (TTTGameBoard *)copyBoard;
 
 @end

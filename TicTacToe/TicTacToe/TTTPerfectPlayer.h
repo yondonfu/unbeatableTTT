@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTTGameState.h"
 
 @interface TTTPerfectPlayer : NSObject
+
+- (NSInteger)minimax:(TTTGameState *)game atDepth:(NSInteger)depth;
 
 @end
