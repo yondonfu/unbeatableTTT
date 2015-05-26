@@ -35,6 +35,11 @@
     NSLog(@"%@", self.gameBoard.gameMatrix);
 }
 
+- (void)resetGame
+{
+    [self.gameBoard resetBoard];
+}
+
 - (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index
 {
     [self.gameBoard setPiece:type atIndex:index];

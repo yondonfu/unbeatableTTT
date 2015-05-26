@@ -85,7 +85,9 @@
     [[TTTGamePlayController sharedInstance] startGame];
     
     [self.gridView clearGrid];
-    [self.gridView allowTaps];
+    
+    UITapGestureRecognizer *gridRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
+    [self.gridView addGestureRecognizer:gridRecognizer];
 }
 
 - (void)selectPlayer:(UITapGestureRecognizer *)recgonizer
@@ -97,8 +99,143 @@
     [[TTTGamePlayController sharedInstance] startGame];
     
     [self.gridView clearGrid];
-    [self.gridView allowTaps];
+    
+    UITapGestureRecognizer *gridRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
+    [self.gridView addGestureRecognizer:gridRecognizer];
 }
+
+- (void)singleGridTap:(UIGestureRecognizer *)gestureRecognizer
+{
+    CGPoint tapLoc = [gestureRecognizer locationInView:self.gridView];
+    
+    TTTXView *xView = [[TTTXView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    
+    if (tapLoc.x > 0 && tapLoc.x < kCellSize) {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top left");
+            
+            xView.center = CGPointMake(kCellSize / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:0];
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle left");
+            
+            xView.center = CGPointMake(kCellSize / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:3];
+            
+        } else {
+            NSLog(@"Bottom left");
+            
+            xView.center = CGPointMake(kCellSize / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:6];
+        }
+    } else if (tapLoc.x > kCellSize && tapLoc.x < 2 * kCellSize) {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top middle");
+            
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:1];
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle middle");
+            
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:4];
+            
+        } else {
+            NSLog(@"Bottom middle");
+            
+            xView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:7];
+            
+        }
+    } else {
+        if (tapLoc.y > 0 && tapLoc.y < kCellSize) {
+            NSLog(@"Top right");
+            
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, kCellSize / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:2];
+            
+        } else if (tapLoc.y > kCellSize && tapLoc.y < 2 * kCellSize) {
+            NSLog(@"Middle right");
+            
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:5];
+            
+        } else {
+            NSLog(@"Bottom right");
+            
+            xView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+            
+            [[TTTGamePlayController sharedInstance] setPiece:TTTBoardPieceX atIndex:8];
+            
+        }
+    }
+    
+    [self.gridView addSubview:xView];
+    
+    if ([[TTTGamePlayController sharedInstance] isFinished]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Draw" message:@"Better luck next time!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.gridView clearGrid];
+            [[TTTGamePlayController sharedInstance] resetGame];
+        }];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        NSLog(@"Board filled, removing gesture recognizer");
+        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        
+        self.playerLabel.textColor = [UIColor blackColor];
+        self.computerLabel.textColor = [UIColor blackColor];
+    }
+    
+    if ([[TTTGamePlayController sharedInstance] hasWonPlayer:TTTBoardPieceX]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulations!" message:@"You Won!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.gridView clearGrid];
+            [[TTTGamePlayController sharedInstance] resetGame];
+        }];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        
+        self.playerLabel.textColor = [UIColor blackColor];
+        self.computerLabel.textColor = [UIColor blackColor];
+    }
+    
+    if ([[TTTGamePlayController sharedInstance] hasWonPlayer:TTTBoardPieceO]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sorry" message:@"The computer Won" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.gridView clearGrid];
+            [[TTTGamePlayController sharedInstance] resetGame];
+        }];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        
+        self.playerLabel.textColor = [UIColor blackColor];
+        self.computerLabel.textColor = [UIColor blackColor];
+    }
+    
+}
+
 
 
 

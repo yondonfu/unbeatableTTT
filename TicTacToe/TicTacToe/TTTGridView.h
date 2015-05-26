@@ -13,7 +13,6 @@
 
 @interface TTTGridView : UIView
 
-- (void)allowTaps;
 - (void)clearGrid;
 
 @end

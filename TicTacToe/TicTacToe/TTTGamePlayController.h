@@ -13,6 +13,7 @@
 
 + (instancetype)sharedInstance;
 - (void)startGame;
+- (void)resetGame;
 - (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
 - (BOOL)isFinished;
 - (BOOL)hasWonPlayer:(TTTBoardPiece)type;

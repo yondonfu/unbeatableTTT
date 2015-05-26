@@ -15,5 +15,6 @@
 
 - (void)setPiece:(TTTBoardPiece)type atIndex:(NSInteger)index;
 - (BOOL)isSlotOpen:(NSInteger)index;
+- (void)resetBoard;
 
 @end
