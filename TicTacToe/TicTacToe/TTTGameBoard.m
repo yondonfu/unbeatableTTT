@@ -36,6 +36,7 @@
     } else {
         self.gameMatrix[index] = @(type);
     }
+    
 }
 
 - (TTTBoardPiece)pieceAtIndex:(NSInteger)index

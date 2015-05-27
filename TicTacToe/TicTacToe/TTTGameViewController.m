@@ -10,6 +10,7 @@
 #import "TTTGridView.h"
 #import "TTTCircleView.h"
 #import "TTTXView.h"
+#import "TTTCircleView.h"
 #import "TTTGamePlayController.h"
 
 @interface TTTGameViewController ()
@@ -236,8 +237,46 @@
             self.playerLabel.textColor = [UIColor blackColor];
             self.computerLabel.textColor = [UIColor blackColor];
         }
+        
+        [self computerResponse];
 
     }
+    
+}
+
+- (void)computerResponse
+{
+    if (![TTTGamePlayController sharedInstance].currGameState.isPlayerTurn) {
+        NSInteger move = [[TTTGamePlayController sharedInstance].perfectComputer takeTurn];
+        NSLog(@"Computer response: %lu", move);
+        
+        TTTCircleView *oView = [[TTTCircleView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        
+        if (move == 0) {
+            oView.center = CGPointMake(kCellSize / 2, kCellSize / 2);
+        } else if (move == 1) {
+            oView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, kCellSize / 2);
+        } else if (move == 2) {
+            oView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, kCellSize / 2);
+        } else if (move == 3) {
+            oView.center = CGPointMake(kCellSize / 2, (kCellSize + (2 * kCellSize)) / 2);
+        } else if (move == 4) {
+            oView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+        } else if (move == 5) {
+            oView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, (kCellSize + (2 * kCellSize)) / 2);
+        } else if (move == 6) {
+            oView.center = CGPointMake(kCellSize / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+        } else if (move == 7) {
+            oView.center = CGPointMake((kCellSize + (2 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+        } else if (move == 8) {
+            oView.center = CGPointMake(((2 * kCellSize) + (3 * kCellSize)) / 2, ((2 * kCellSize) + (3 * kCellSize)) / 2);
+        }
+        
+        [self.gridView addSubview:oView];
+        
+        [[TTTGamePlayController sharedInstance].currGameState setPlayerTurn:YES];
+    }
+    
     
 }
 

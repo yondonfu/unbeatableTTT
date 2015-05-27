@@ -11,6 +11,6 @@
 
 @interface TTTPerfectPlayer : NSObject
 
-- (NSInteger)minimax:(TTTGameState *)game atDepth:(NSInteger)depth;
+- (NSInteger)takeTurn;
 
 @end

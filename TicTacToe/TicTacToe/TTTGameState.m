@@ -213,9 +213,9 @@
 - (NSInteger)scoreAtDepth:(NSInteger)depth
 {
     if ([self hasWonPlayer:TTTBoardPieceX]) {
-        return 10 - depth;
+        return 10;
     } else if ([self hasWonPlayer:TTTBoardPieceO]) {
-        return depth - 10;
+        return -10;
     } else {
         return 0;
     }
