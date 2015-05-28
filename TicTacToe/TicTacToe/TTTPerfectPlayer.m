@@ -38,7 +38,7 @@
 
 - (NSInteger)minimax:(TTTGameState *)game atDepth:(NSInteger)depth
 {
-    if ([game isFinished]) {
+    if ([game hasWonPlayer:TTTBoardPieceX] || [game hasWonPlayer:TTTBoardPieceO] || [game isFinished]) {
         return [game scoreAtDepth:depth];
     }
     
@@ -57,8 +57,8 @@
             [possibleState setIsPlayerTurn:YES];
         }
         
-        [gameStates insertObject:possibleState atIndex:0];
-        [choices insertObject:move atIndex:0];
+        [gameStates addObject:possibleState];
+        [choices addObject:move];
     }
     
     if (game.isPlayerTurn) {
