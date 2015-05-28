@@ -22,6 +22,8 @@
 @property (strong, nonatomic) TTTCircleView *computerIcon;
 @property (strong, nonatomic) UILabel *promptLabel;
 
+@property (strong, nonatomic) UIGestureRecognizer *gridTapRecognizer;
+
 @end
 
 @implementation TTTGameViewController
@@ -87,8 +89,8 @@
     
     [self.gridView clearGrid];
     
-    UITapGestureRecognizer *gridRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
-    [self.gridView addGestureRecognizer:gridRecognizer];
+    self.gridTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
+    [self.gridView addGestureRecognizer:self.gridTapRecognizer];
     
     [self computerResponse];
 }
@@ -103,8 +105,8 @@
     
     [self.gridView clearGrid];
     
-    UITapGestureRecognizer *gridRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
-    [self.gridView addGestureRecognizer:gridRecognizer];
+    self.gridTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleGridTap:)];
+    [self.gridView addGestureRecognizer:self.gridTapRecognizer];
 }
 
 - (void)singleGridTap:(UIGestureRecognizer *)gestureRecognizer
@@ -193,10 +195,8 @@
             
             [[TTTGamePlayController sharedInstance].currGameState setPlayerTurn:NO];
             
-            if (![self checkEndGameAndStopGestureRecognizer:gestureRecognizer]) {
+            if (![self checkEndGame]) {
                 [self computerResponse];
-                
-                [self checkEndGameAndStopGestureRecognizer:gestureRecognizer];
             }
         }
 
@@ -248,6 +248,8 @@
                 [[TTTGamePlayController sharedInstance].currGameState setPlayerTurn:YES];
                 
                 [indicator stopAnimating];
+                
+                [self checkEndGame];
             });
         });
         
@@ -256,7 +258,7 @@
     
 }
 
-- (BOOL)checkEndGameAndStopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+- (BOOL)checkEndGame
 {
     if ([[TTTGamePlayController sharedInstance].currGameState isFinished]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Draw" message:@"Better luck next time!" preferredStyle:UIAlertControllerStyleAlert];
@@ -269,7 +271,7 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        [self removeGridTapRecognizer];
         
         self.playerLabel.textColor = [UIColor blackColor];
         self.computerLabel.textColor = [UIColor blackColor];
@@ -288,7 +290,7 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        [self removeGridTapRecognizer];
         
         self.playerLabel.textColor = [UIColor blackColor];
         self.computerLabel.textColor = [UIColor blackColor];
@@ -307,7 +309,7 @@
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [self.gridView removeGestureRecognizer:gestureRecognizer];
+        [self removeGridTapRecognizer];
         
         self.playerLabel.textColor = [UIColor blackColor];
         self.computerLabel.textColor = [UIColor blackColor];
@@ -316,6 +318,11 @@
     }
     
     return NO;
+}
+
+- (void)removeGridTapRecognizer
+{
+    [self.gridView removeGestureRecognizer:self.gridTapRecognizer];
 }
 
 
