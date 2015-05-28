@@ -18,8 +18,6 @@
 
 @implementation TTTPerfectPlayer
 
-
-
 - (NSInteger)takeTurn
 {
     if (![[TTTGamePlayController sharedInstance].currGameState isFinished]) {
