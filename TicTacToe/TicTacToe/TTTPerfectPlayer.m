@@ -44,112 +44,58 @@
         return [game scoreAtDepth:depth];
     }
     
-//    depth += 1;
+    depth += 1;
     
-    NSArray *availableMoves = [game getAvailableMoves];
-    NSLog(@"Available moves: %lu", availableMoves.count);
-    
-    NSMutableArray *childrenGameStates = [NSMutableArray array];
+    NSMutableArray *gameStates = [NSMutableArray array];
     NSMutableArray *choices = [NSMutableArray array];
     
-    for (NSNumber *move in availableMoves) {
-        TTTGameState *possibleGameState = nil;
+    for (NSNumber *move in [game getAvailableMoves]) {
+        TTTGameState *possibleState;
         if (game.isPlayerTurn) {
-            possibleGameState = [game newGameStateForType:TTTBoardPieceX withMove:[move intValue]];
-            [game setIsPlayerTurn:NO];
+            possibleState = [game newGameStateForType:TTTBoardPieceX withMove:[move intValue]];
+            [possibleState setIsPlayerTurn:NO];
         } else {
-            possibleGameState = [game newGameStateForType:TTTBoardPieceO withMove:[move intValue]];
-            [game setIsPlayerTurn:YES];
+            possibleState = [game newGameStateForType:TTTBoardPieceO withMove:[move intValue]];
+            [possibleState setIsPlayerTurn:YES];
         }
         
-        [childrenGameStates insertObject:possibleGameState atIndex:0];
+        [gameStates insertObject:possibleState atIndex:0];
         [choices insertObject:move atIndex:0];
     }
     
     if (game.isPlayerTurn) {
-        NSInteger bestScore = -INFINITY;
-        NSInteger bestIndex = 0;
+        NSInteger maxScore = -INFINITY;
+        NSInteger maxIndex = 0;
         
-        for (int i = 0; i < childrenGameStates.count; i++) {
-            NSInteger score = [self minimax:[childrenGameStates objectAtIndex:i] atDepth:depth];
-            if (score > bestScore) {
-                bestScore = score;
-                NSLog(@"Score change: %lu", bestScore);
-                bestIndex = i;
+        for (int i = 0; i < gameStates.count; i++) {
+            NSInteger score = [self minimax:[gameStates objectAtIndex:i] atDepth:depth];
+            if (score > maxScore) {
+                maxScore = score;
+                maxIndex = i;
             }
         }
         
-        self.nextMove = [[choices objectAtIndex:bestIndex] intValue];
+        self.nextMove = [[choices objectAtIndex:maxIndex] intValue];
         
-        return bestScore;
+        return maxScore;
         
     } else {
-        NSInteger bestScore = INFINITY;
-        NSInteger bestIndex = 0;
+        NSInteger minScore = INFINITY;
+        NSInteger minIndex = 0;
         
-        for (int i = 0; i < childrenGameStates.count; i++) {
-            NSInteger score = [self minimax:[childrenGameStates objectAtIndex:i] atDepth:depth];
-            if (score < bestScore) {
-                bestScore = score;
-                NSLog(@"Score change: %lu", bestScore);
-                bestIndex = i;
+        for (int i = 0; i < gameStates.count; i++) {
+            NSInteger score = [self minimax:[gameStates objectAtIndex:i] atDepth:depth];
+            if (score < minScore) {
+                minScore = score;
+                minIndex = i;
             }
         }
         
-        self.nextMove = [[choices objectAtIndex:bestIndex] intValue];
+        self.nextMove = [[choices objectAtIndex:minIndex] intValue];
         
-        return bestScore;
-    }
-    
-//    NSMutableArray *scores = [NSMutableArray array];
-//    NSMutableArray *moves = [NSMutableArray array];
-//    
-//    depth += 1;
-//    
-//    NSArray *availableMoves = [game getAvailableMoves];
-//    NSLog(@"Available moves: %@", availableMoves);
-//    
-//    for (int i = 0; i < availableMoves.count; i++) {
-//        TTTGameState *possibleGameState = [game newGameStateForType:TTTBoardPieceX withMove:[[availableMoves objectAtIndex:i] intValue]];
-//        
-//        [scores insertObject:@([self minimax:possibleGameState atDepth:depth]) atIndex:0];
-//        [moves insertObject:[availableMoves objectAtIndex:i] atIndex:0];
-//    }
-//    
-//    if (game.isPlayerTurn) {
-//        __block NSUInteger maxIndex;
-//        __block NSNumber *maxValue = [NSNumber numberWithInt:0];
-//        
-//        [scores enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            NSNumber *newValue = obj;
-//            if ([newValue intValue] > [newValue intValue]) {
-//                maxValue = newValue;
-//                maxIndex = idx;
-//            }
-//        }];
-//        
-//        NSLog(@"maxIndex %lu", maxIndex);
-//        self.nextMove = [[moves objectAtIndex:maxIndex] intValue];
-//        
-//        return [maxValue intValue];
-//    } else {
-//        NSLog(@"size of scores %lu", scores.count);
-//        __block NSUInteger minIndex;
-//        __block NSNumber *minValue = [NSNumber numberWithInt:0];
-//        
-//        [scores enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            NSNumber *newValue = obj;
-//            if ([newValue intValue] < [newValue intValue]) {
-//                minValue = newValue;
-//                minIndex = idx;
-//            }
-//        }];
-//        
-//        NSLog(@"minIndex %lu", minIndex);
-//        self.nextMove = [[moves objectAtIndex:minIndex] intValue];
-//        
-//        return [minValue intValue];
-//    }
+        return minScore;
+        
+    }    
 }
 
 
