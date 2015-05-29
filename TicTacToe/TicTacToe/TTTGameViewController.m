@@ -23,6 +23,8 @@
 @property (strong, nonatomic) UILabel *promptLabel;
 
 @property (strong, nonatomic) UIGestureRecognizer *gridTapRecognizer;
+@property (strong, nonatomic) UIGestureRecognizer *computerRecognizer;
+@property (strong, nonatomic) UIGestureRecognizer *playerRecognizer;
 
 @end
 
@@ -61,8 +63,9 @@
     [self.computerLabel setUserInteractionEnabled:YES];
     [self.view addSubview:self.computerLabel];
     
-    UITapGestureRecognizer *computerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectComputer:)];
-    [self.computerLabel addGestureRecognizer:computerRecognizer];
+    self.computerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectComputer:)];
+    [self.computerIcon addGestureRecognizer:self.computerRecognizer];
+    [self.computerLabel addGestureRecognizer:self.computerRecognizer];
     
     self.playerIcon = [[TTTXView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + self.view.bounds.size.width - 50, self.promptLabel.center.y + 20, 30, 30)];
     [self.view addSubview:self.playerIcon];
@@ -74,8 +77,9 @@
     [self.playerLabel setUserInteractionEnabled:YES];
     [self.view addSubview:self.playerLabel];
     
-    UITapGestureRecognizer *playerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPlayer:)];
-    [self.playerLabel addGestureRecognizer:playerRecognizer];
+    self.playerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPlayer:)];
+    [self.playerIcon addGestureRecognizer:self.playerRecognizer];
+    [self.playerLabel addGestureRecognizer:self.playerRecognizer];
     
 }
 
@@ -208,6 +212,11 @@
 {
     if (![TTTGamePlayController sharedInstance].currGameState.isPlayerTurn) {
         
+        [self.computerIcon removeGestureRecognizer:self.computerRecognizer];
+        [self.computerLabel removeGestureRecognizer:self.computerRecognizer];
+        [self.playerIcon removeGestureRecognizer:self.playerRecognizer];
+        [self.playerLabel removeGestureRecognizer:self.playerRecognizer];
+        
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         indicator.frame = CGRectMake(0, 0, 100, 100);
         indicator.center = CGPointMake(self.view.center.x, self.promptLabel.center.y + self.promptLabel.bounds.size.height / 2);
@@ -248,6 +257,14 @@
                 [[TTTGamePlayController sharedInstance].currGameState setPlayerTurn:YES];
                 
                 [indicator stopAnimating];
+                
+                self.computerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectComputer:)];
+                [self.computerIcon addGestureRecognizer:self.computerRecognizer];
+                [self.computerLabel addGestureRecognizer:self.computerRecognizer];
+                
+                self.playerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPlayer:)];
+                [self.playerIcon addGestureRecognizer:self.playerRecognizer];
+                [self.playerLabel addGestureRecognizer:self.playerRecognizer];
                 
                 [self checkEndGame];
             });

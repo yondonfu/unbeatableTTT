@@ -21,7 +21,7 @@
 - (NSInteger)takeTurn
 {
     if (![[TTTGamePlayController sharedInstance].currGameState isFinished]) {
-        NSLog(@"Best score for move: %lu", [self chooseMove]);
+        [self chooseMove];
         
         [[TTTGamePlayController sharedInstance].currGameState makeMoveWith:TTTBoardPieceO atIndex:self.nextMove];
         
